@@ -25,16 +25,20 @@ rules =
     [k, Rule.new(k, v)]
   end
 
-part1 = pages.sum do |page|
-  sorted = page.map { |p| rules[p] }.sort.map(&:number)
-  sorted == page ? page[page.size/2] : 0
+benchmark do
+  part1 = pages.sum do |page|
+    sorted = page.map { |p| rules[p] }.sort.map(&:number)
+    sorted == page ? page[page.size/2] : 0
+  end
+
+  solve(1, part1)
 end
 
-solve(1, part1)
+benchmark do
+  part2 = pages.sum do |page|
+    sorted = page.map { |p| rules[p] }.sort.map(&:number)
+    sorted == page ? 0 : sorted[sorted.size/2]
+  end
 
-part2 = pages.sum do |page|
-  sorted = page.map { |p| rules[p] }.sort.map(&:number)
-  sorted == page ? 0 : sorted[sorted.size/2]
+  solve(2, part2)
 end
-
-solve(2, part2)
