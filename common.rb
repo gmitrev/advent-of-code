@@ -4,6 +4,10 @@ def debug(*)
   puts(*) if ENV['TEST'] == '1'
 end
 
+def d(*)
+  debug(*)
+end
+
 def i(what)
   puts(what.inspect) if ENV['TEST'] == '1'
 end
