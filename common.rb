@@ -1,7 +1,14 @@
 require 'benchmark'
+require 'rainbow'
+
+FULL_BLOCK = '█'
 
 def debug(*)
-  puts(*) if ENV['TEST'] == '1'
+  puts(*) if test?
+end
+
+def test?
+  ENV['TEST'] == '1'
 end
 
 def d(*)
@@ -9,7 +16,7 @@ def d(*)
 end
 
 def i(what)
-  puts(what.inspect) if ENV['TEST'] == '1'
+  puts(what.inspect) if test?
 end
 
 def solve(part, answer)
@@ -17,7 +24,7 @@ def solve(part, answer)
 end
 
 def read_input
-  input_file = ENV['TEST'] == '1' ? "example_input" : "input"
+  input_file = test? ? 'example_input' : 'input'
   File.read(input_file)
 end
 
